@@ -74,7 +74,8 @@ fn knapsack_solution(my_knapsack_problem: KnapsackProblem) -> KnapsackSolution {
     for sol in search_space {
         let mut cum_weight = 0_i32;
         let mut cum_value  = 0_i32;
-        for ((is_included, value), weight) in sol.iter().zip(my_knapsack_problem.value.iter()).zip(my_knapsack_problem.items.iter()) {
+        for ((is_included, value), weight) in sol.iter().zip(my_knapsack_problem.value.iter())
+                                                        .zip(my_knapsack_problem.items.iter()) {
             if *is_included == 1 {
                 if cum_weight + weight > my_knapsack_problem.capacity {
                     break;
@@ -102,4 +103,10 @@ fn DFS(depth: i32, current_level: i32, path: &mut Vec<i32>, search_space: &mut V
     }
     path.pop();
 }
-    
+
+fn dfs_2(depth: i32){
+    let stack = Vec::new();
+    loop {
+        for i in [1, 0]{
+
+
