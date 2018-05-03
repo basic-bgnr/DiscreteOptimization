@@ -6,19 +6,20 @@ use std::cmp;
 
 
 fn main(){
-     let file_location = env::args().nth(1).expect("no input");
+     //let file_location = env::args().nth(1).expect("no input");
     
-     let mut string_buffer = String::new();
-     
-     let mut file = File::open(file_location).expect("file error");
-     file.read_to_string(&mut string_buffer);
+     //let mut string_buffer = String::new();
+     //
+     //let mut file = File::open(file_location).expect("file error");
+     //file.read_to_string(&mut string_buffer);
 
-     let problem = knapsack_problem(&string_buffer);
+     //let problem = knapsack_problem(&string_buffer);
      
-     println!("{:?}", problem);
-     let solution = knapsack_solution(problem);
+     //println!("{:?}", problem);
+     //let solution = knapsack_solution(problem);
 
-     println!("{:?}", solution);
+     //println!("{:?}", solution);
+     println!("{:?}", dfs_stack(env::args().nth(1).expect("no input").parse::<i32>().expect("parse error")));
 }
 
 #[derive(Debug)]
@@ -32,6 +33,12 @@ struct KnapsackProblem {
 struct KnapsackSolution {
     is_optimum: bool,
     value : i32,
+}
+#[derive(Debug)]
+struct Vertex{
+    id: i32,
+    depth: i32,
+    path: Vec<i32>,
 }
 
     
@@ -104,9 +111,32 @@ fn DFS(depth: i32, current_level: i32, path: &mut Vec<i32>, search_space: &mut V
     path.pop();
 }
 
-fn dfs_2(depth: i32){
-    let stack = Vec::new();
-    loop {
-        for i in [1, 0]{
+fn dfs_stack(max_depth: i32) -> Vec<Vertex> {
+   let mut closed_stack = Vec::new();
+   let mut open_stack   = Vec::new();
+
+   open_stack.push( Vertex{ id: 0, depth:0, path: [0].to_vec() } );
+   open_stack.push( Vertex{ id: 1, depth:0, path: [1].to_vec() } );
+
+   loop {
+       if open_stack.len() == 0 {
+           break;
+       }
+       let mut last_item = open_stack.pop().unwrap();
+
+       for &i in [0, 1].iter() {
+           let depth = last_item.depth + 1;
+           if depth < max_depth {
+               let mut pth = last_item.path.clone();
+               pth.push(i);
+               open_stack.push(Vertex{id:i, depth: depth, path: pth});
+           }
+       }
+       closed_stack.push(last_item);
+   }
+   closed_stack
+}
+
+
 
 

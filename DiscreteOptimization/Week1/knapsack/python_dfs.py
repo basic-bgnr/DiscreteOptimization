@@ -31,7 +31,7 @@ def bfs_stack(max_depth):
 
         for i in (0, 1):
             depth = last_item.depth + 1
-            if depth < max_depth:
+            if depth <= max_depth:
                 lst = list(last_item.path)
                 lst.append(i)
                 open_stack.append(Vertex(i, depth, lst))
@@ -39,11 +39,10 @@ def bfs_stack(max_depth):
         closed_stack.append(last_item)
 
 
-    path_to_end = filter(lambda x:x.depth+1==max_depth, closed_stack)
-    filtered    = map(lambda x: x.path, path_to_end)
-    print(list(filtered))
-
-
+#    path_to_end = filter(lambda x:x.depth+1==max_depth, closed_stack)
+#    filtered    = map(lambda x: x.path, path_to_end)
+#    print(list(filtered))
+    print(closed_stack)
 
 if __name__ == '__main__':
     #bfs(int(sys.argv[1]))
