@@ -37,15 +37,15 @@ def main():
 
     memoized_item = dict()
 
-    for n in range(0, N+1):
-        for k in range(0, K+1):
-
-            dynamic_table[k][n] = dynamic_programming(k, n, weight, value, memoized_item)
-
+#    for n in range(0, N+1):
+#        for k in range(0, K+1):
+#
+#            dynamic_table[k][n] = dynamic_programming(k, n, weight, value, memoized_item)
+#
 
     #for l in dynamic_table:
         #print(l)
-    print(dynamic_table[K][N])
+    print(dynamic_programming(K, N, weight, value, memoized_item))
 
 if __name__ == '__main__':
     main()

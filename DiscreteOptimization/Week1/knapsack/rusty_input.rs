@@ -19,7 +19,7 @@ fn main(){
      //let solution = knapsack_solution(problem);
 
      //println!("{:?}", solution);
-     println!("{:?}", dfs_stack(env::args().nth(1).expect("no input").parse::<i32>().expect("parse error")));
+     println!("{:?}", dfs_stack(env::args().nth(1).expect("no input").parse::<u8>().expect("parse error")));
 }
 
 #[derive(Debug)]
@@ -36,9 +36,9 @@ struct KnapsackSolution {
 }
 #[derive(Debug)]
 struct Vertex{
-    id: i32,
-    depth: i32,
-    path: Vec<i32>,
+    id: u8,
+    depth: u8,
+    path: Vec<u8>,
 }
 
     
@@ -111,7 +111,7 @@ fn DFS(depth: i32, current_level: i32, path: &mut Vec<i32>, search_space: &mut V
     path.pop();
 }
 
-fn dfs_stack(max_depth: i32) -> Vec<Vertex> {
+fn dfs_stack(max_depth: u8) -> Vec<Vertex> {
    let mut closed_stack = Vec::new();
    let mut open_stack   = Vec::new();
 
